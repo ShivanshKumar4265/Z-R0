@@ -1,5 +1,6 @@
 package com.example.scribbox;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,15 +11,27 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
     private Button logIn,SignUp;
     private EditText logInMail, loginPassword;
     private TextView ForgotPassword;
 
+    private FirebaseAuth firebaseAuth;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
         /**
          * Finding all the views
@@ -59,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String retrieve_LogInMail = logInMail.getText().toString().trim();
-                String retrieve_LogInPassword = logInMail.getText().toString().trim();
+                String retrieve_LogInPassword = loginPassword.getText().toString().trim();
 
                 if(retrieve_LogInMail.isEmpty() || retrieve_LogInPassword.isEmpty()){
 
@@ -68,7 +81,22 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
 
-                    //Login the user
+                    /**
+                     *  User login and OnComplete Listener
+                     */
+
+                     firebaseAuth.signInWithEmailAndPassword(retrieve_LogInMail,retrieve_LogInPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                         @Override
+                         public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+                                    checkEmailVerification();
+                                }
+                                else {
+                                    Toast.makeText(MainActivity.this, "Account Doesn't Exist", Toast.LENGTH_SHORT).show();
+                                }
+                         }
+                     });
+
                 }
 
             }
@@ -76,4 +104,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private void checkEmailVerification() {
+
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if(firebaseUser.isEmailVerified() == true){
+            Toast.makeText(this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(new Intent(MainActivity.this,SignUp_Activity.class));
+        }else{
+            Toast.makeText(this, "You haven't verified Email", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+
 }

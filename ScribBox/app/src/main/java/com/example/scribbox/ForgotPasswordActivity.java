@@ -1,5 +1,6 @@
 package com.example.scribbox;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,6 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class ForgotPasswordActivity extends AppCompatActivity {
     /**
      * Declaring all the views in this activity
@@ -19,10 +24,15 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private Button BtnRecover;
     private TextView wantToLoginClickHere;
 
+    private FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
+
+
+        firebaseAuth = FirebaseAuth.getInstance(); // Getting the current instance for which We have to  recover the password
 
        // getSupportActionBar().hide(); // use to hid the ActionBar in this activity
 
@@ -58,7 +68,23 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Provide Email",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    // We have to send password recover email.
+                    /**
+                     * Sending the recovery  email to current instance.
+                     */
+                    firebaseAuth.sendPasswordResetEmail(mail_toRecoverPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+
+                                Toast.makeText(ForgotPasswordActivity.this, "Reset mail has been sent", Toast.LENGTH_SHORT).show();
+                                finish();
+                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
+                            }else {
+                                Toast.makeText(ForgotPasswordActivity.this, "Enter Correct E-Mail", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
             }
         });

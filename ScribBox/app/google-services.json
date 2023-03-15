@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "565227334818",
+    "project_id": "scribbox",
+    "storage_bucket": "scribbox.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:565227334818:android:8a3d0d53beb0ce8b2f3bfb",
+        "android_client_info": {
+          "package_name": "com.example.scribbox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "565227334818-a108vf7pmqa7itanlp3oaisekjpmeuhl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIc8at1R4pwpO2fUQxSVs21BD2GFaIPhQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "565227334818-a108vf7pmqa7itanlp3oaisekjpmeuhl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
