@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">ScribBox</string>
-    <string name="Welcome_Back">Welcome To ScribBox</string>
+    <string name="Welcome_Back">Welcome Back To ScribBox</string>
+    <string name="Welcome">Welcome To ScribBox</string>
+    <string name="Lets_JotDown">Let\'s JotDown</string>
+    <string name="Lets_JotDownTogether">Let\'s JotDown together</string>
+    <string name="Want_To_Log_Inr">Want to LogIn? Click Here</string>
 </resources>

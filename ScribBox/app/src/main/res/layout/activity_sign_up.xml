@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"></RelativeLayout>
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,8 +28,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/Welcome_Back"
-            android:textSize="27sp"
+            android:text="@string/Welcome"
+            android:textSize="32sp"
             android:textStyle="bold"
             android:textColor="@color/purple_700"
             />
@@ -37,10 +37,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/Lets_JotDown"
+            android:text="@string/Lets_JotDownTogether"
             android:fontFamily="@font/trenchthin"
             android:layout_marginTop="@dimen/_7sdp"
-            android:textSize="32dp"
+            android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="@color/purple_700"
             />
@@ -58,7 +58,7 @@
         >
 
         <EditText
-            android:id="@+id/LoginMail"
+            android:id="@+id/signUpMail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Your Email"
@@ -79,7 +79,7 @@
         >
 
         <EditText
-            android:id="@+id/LoginPassword"
+            android:id="@+id/signUpPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Your Password"
@@ -100,22 +100,20 @@
         >
 
         <Button
-            android:id="@+id/btnlogIn"
+            android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Log In"
+            android:text="Sign Up"
             android:textAllCaps="false" />
 
         <TextView
-            android:id="@+id/forgotPasswordBtn"
+            android:id="@+id/wantToLogIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Forgot Password"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="120dp"
+
             android:gravity="center"
-            />
-
-
+            android:text="Want to LogIn?" />
 
 
     </RelativeLayout>
@@ -129,16 +127,6 @@
         android:layout_below="@+id/LOGIN"
         android:layout_marginBottom="150dp"
         >
-        <Button
-            android:id="@+id/btnSignUp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="New User? Sign up here!"
-            android:textAllCaps="false"
-            />
-
-
-
     </RelativeLayout>
 
 
