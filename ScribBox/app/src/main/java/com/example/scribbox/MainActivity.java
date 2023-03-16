@@ -34,6 +34,16 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
         /**
+         * If user is already logged In then no need to login again and again
+          */
+
+
+        if(firebaseUser!=null){
+            finish();
+            startActivity(new Intent(MainActivity.this,NotesActivity.class));
+        }
+
+        /**
          * Finding all the views
          */
 
@@ -93,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                                 else {
                                     Toast.makeText(MainActivity.this, "Account Doesn't Exist", Toast.LENGTH_SHORT).show();
+                                    firebaseAuth.signOut();
                                 }
                          }
                      });
@@ -111,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         if(firebaseUser.isEmailVerified() == true){
             Toast.makeText(this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
             finish();
-            startActivity(new Intent(MainActivity.this,SignUp_Activity.class));
+            startActivity(new Intent(MainActivity.this,NotesActivity.class));
         }else{
             Toast.makeText(this, "You haven't verified Email", Toast.LENGTH_SHORT).show();
         }
