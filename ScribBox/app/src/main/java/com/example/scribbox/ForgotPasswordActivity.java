@@ -34,7 +34,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance(); // Getting the current instance for which We have to  recover the password
 
-       // getSupportActionBar().hide(); // use to hid the ActionBar in this activity
+       getSupportActionBar().hide(); // use to hid the ActionBar in this activity
 
 /**
 * Finding all the views used in this Layout
