@@ -1,9 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CreateNotesActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/toolbarofCreateNotes"
+        android:background="@color/purple_700"
+        >
+
+        <EditText
+            android:id="@+id/createTitleForNotes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:hint="Enter Title"
+            android:textColor="@color/black"
+            android:background="@android:color/transparent"
+            android:paddingTop="12dp"
+            android:paddingRight="10dp"
+            />
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/createcontentofnote"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarofCreateNotes"
+        android:layout_marginTop="3dp"
+        android:background="#faf7f7"
+        android:gravity="top|left"
+        android:hint="Start Here..."
+        android:paddingLeft="20dp"
+        android:paddingTop="12dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/black" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/saveNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="40dp"
+        android:elevation="50dp"
+        android:backgroundTint="@color/purple_700"
+        android:src="@drawable/baseline_save_24"
+        app:maxImageSize="35dp"
+        android:foregroundGravity="center"
+        />
+
+</RelativeLayout>
