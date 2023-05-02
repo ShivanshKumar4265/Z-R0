@@ -50,6 +50,15 @@
         android:layout_marginTop="25dp"
         android:text="Push data" />
 
+
+    <Button
+        android:id="@+id/updateData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Update data" />
+
+
     <TextView
         android:id="@+id/getName"
         android:layout_width="match_parent"

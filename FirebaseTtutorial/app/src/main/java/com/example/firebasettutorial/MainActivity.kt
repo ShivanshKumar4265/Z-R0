@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var getAge: TextView
     private lateinit var pushData: Button
     private lateinit var getData: Button
+    private lateinit var updateData: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         getAge = findViewById(R.id.getAge)
         pushData = findViewById(R.id.pushData)
         getData = findViewById(R.id.getData)
+        updateData = findViewById(R.id.updateData)
 
         /**
          *
@@ -51,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 //            ref.child("name").setValue(name)
 //            ref.child("age").setValue(age)
 
-            val pushID : String? = ref.push().key
+            val pushID: String? = ref.push().key
             if (pushID != null) {
                 ref.child(pushID).child("name").setValue(name)
                 ref.child(pushID).child("age").setValue(age)
@@ -102,6 +105,38 @@ class MainActivity : AppCompatActivity() {
 
                 }
             })
+
+
+        }
+
+        updateData.setOnClickListener {
+
+            /**
+             *  Updating values using " updateChildren() " methods
+             */
+
+            val name = name.text.toString()
+            val age = age.text.toString()
+
+            val list = mutableMapOf<String, Any>()
+//            list["/-NUSW3lz3tg4RXvvdh6U/name"] = name
+            list["/-NUSW3lz3tg4RXvvdh6U/age"] = age
+            ref.updateChildren(list)
+
+
+
+            /**
+             * To remove value
+             */
+
+
+//            val task :Task<Void> = ref.child("-NUSeJlkmS3grYIhWJ8c").removeValue()
+//            task.addOnSuccessListener{
+//
+//            }.addOnFailureListener{
+
+
+            }
 
 
         }
