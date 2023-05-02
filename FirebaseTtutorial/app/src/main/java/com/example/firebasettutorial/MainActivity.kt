@@ -13,14 +13,14 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class MainActivity : AppCompatActivity() {
-    lateinit var database: FirebaseDatabase
-    lateinit var ref: DatabaseReference
-    lateinit var name: EditText
-    lateinit var age: EditText
+    private lateinit var database: FirebaseDatabase
+    private lateinit var ref: DatabaseReference
+    private lateinit var name: EditText
+    private lateinit var age: EditText
     lateinit var getName: TextView
     lateinit var getAge: TextView
-    lateinit var pushData: Button
-    lateinit var getData: Button
+    private lateinit var pushData: Button
+    private lateinit var getData: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,13 +35,27 @@ class MainActivity : AppCompatActivity() {
         pushData = findViewById(R.id.pushData)
         getData = findViewById(R.id.getData)
 
+        /**
+         *
+         * inserting data to firebase database
+         */
 
         pushData.setOnClickListener {
 
             val name = name.text.toString()
             val age = age.text.toString()
-            ref.child("name").setValue(name)
-            ref.child("age").setValue(age)
+
+            /**
+             * This snippet is inserting without  push id
+             */
+//            ref.child("name").setValue(name)
+//            ref.child("age").setValue(age)
+
+            val pushID : String? = ref.push().key
+            if (pushID != null) {
+                ref.child(pushID).child("name").setValue(name)
+                ref.child(pushID).child("age").setValue(age)
+            }
         }
 
         getData.setOnClickListener {
